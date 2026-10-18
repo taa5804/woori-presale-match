@@ -1184,7 +1184,25 @@ html,body{
     var rewardBtn = document.getElementById("rewardBtn");
     var visitBtn = document.getElementById("visitBtn");
 
+    
     var params = new URLSearchParams(window.location.search);
+    var urlApt = (params.get("apt") || "").trim();
+    var urlSido = (params.get("sido") || "").trim();
+    var urlPhone = (params.get("phone") || "").trim();
+    var roomCode = (params.get("room") || params.get("code") || "ROOM-001").trim().toUpperCase();
+
+    if (urlApt) {
+      document.title = urlApt + " 8P 공식 카탈로그 | 우리 아파트 분양";
+      var coverTitle = document.getElementById("coverTitle");
+      if (coverTitle) coverTitle.textContent = urlApt;
+      
+      var contactTitle = document.getElementById("contactTitle");
+      if (contactTitle) contactTitle.textContent = urlApt;
+      
+      var contactAddr = document.getElementById("contactAddressText");
+      if (contactAddr) contactAddr.textContent = (urlSido ? urlSido + " " : "") + urlApt + " 주택전시관 / 현장";
+    }
+
     var roomCode = (params.get("room") || params.get("code") || "").trim().toUpperCase();
     var urlDong = (params.get("dong") || params.get("area") || "").trim();
     var previewAptName = (params.get("apt") || params.get("name") || "").trim();
@@ -1596,13 +1614,13 @@ html,body{
           '<span style="color:#cbd5e1;font-weight:600;">' + reward + ' ' + rewardTypeLabel + '</span> <span style="opacity:.4;">|</span> <span style="color:#d6b26e;">열람</span> <b id="viewTime">' + formatTime(activeSeconds) + '</b> <span style="opacity:.5;font-size:11px;">/ 01:00</span>';
       }
 
-      rewardBtn.disabled = !enoughTime;
+      rewardBtn.disabled = false;
 
       if (rewardBtn.disabled) {
         var remain = Math.max(0, requiredSeconds - activeSeconds);
-        rewardBtn.textContent = "8페이지 확인 · " + remain + "초 후 💬 카카오톡 " + reward + " " + rewardTypeLabel + " 받기";
+        rewardBtn.textContent = "✨ [VIP 모델하우스 방문예약 및 VIP 초청권 발급]";
       } else {
-        rewardBtn.textContent = "💬 카카오톡으로 " + reward + " " + rewardTypeLabel + " 받기";
+        rewardBtn.textContent = "✨ [VIP 모델하우스 방문예약 및 VIP 초청권 발급]";
       }
     }
 
@@ -1699,6 +1717,9 @@ html,body{
     }
 
     rewardBtn.addEventListener("click", function(){
+      var vm = document.getElementById("visitReserveModal");
+      if(vm) { vm.style.display = "flex"; return; }
+
       if (rewardBtn.disabled) return;
 
       var sysSettings = null;
