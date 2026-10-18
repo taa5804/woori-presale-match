@@ -1191,6 +1191,51 @@ html,body{
     var roomCode = (params.get("room") || params.get("code") || "ROOM-001").trim().toUpperCase();
 
     if (urlApt) {
+
+    if (urlApt.indexOf("한양립스") !== -1) {
+      // 1P 표지 조감도
+      var coverEl = document.getElementById("coverSection");
+      if (coverEl) coverEl.style.backgroundImage = "linear-gradient(180deg,rgba(4,16,28,.2) 0%,rgba(4,16,28,.45) 50%,rgba(3,12,22,.95) 100%), url('sample-cover.jpg')";
+      
+      // 2P 광역 입지환경 지도
+      var locBox = document.getElementById("locationPhotoBox");
+      if (locBox) {
+        locBox.style.backgroundImage = "url('hanyang-map3d.png')";
+        locBox.style.backgroundSize = "contain";
+        locBox.style.backgroundRepeat = "no-repeat";
+        locBox.style.backgroundPosition = "center";
+      }
+      
+      // 4P 단지배치도
+      var compBox = document.getElementById("complexPhotoBox");
+      if (compBox) {
+        compBox.style.backgroundImage = "url('hanyang-siteplan.png')";
+        compBox.style.backgroundSize = "contain";
+        compBox.style.backgroundRepeat = "no-repeat";
+        compBox.style.backgroundPosition = "center";
+      }
+      
+      // 5P 평면도 84A
+      var u1Box = document.getElementById("unit1PhotoBox");
+      if (u1Box) {
+        u1Box.style.backgroundImage = "url('hanyang-plan84A.png')";
+        u1Box.style.backgroundSize = "contain";
+        u1Box.style.backgroundRepeat = "no-repeat";
+        u1Box.style.backgroundPosition = "center";
+      }
+      
+      // 7P 커뮤니티
+      var commFull = document.getElementById("communityFullBox");
+      if (commFull) {
+        commFull.style.display = "block";
+        commFull.style.backgroundImage = "url('hanyang-comm.png')";
+        commFull.style.backgroundSize = "cover";
+        commFull.style.backgroundPosition = "center";
+        var commGrid = document.getElementById("communityGalleryGrid");
+        if (commGrid) commGrid.style.display = "none";
+      }
+    }
+
       document.title = urlApt + " 8P 공식 카탈로그 | 우리 아파트 분양";
       var coverTitle = document.getElementById("coverTitle");
       if (coverTitle) coverTitle.textContent = urlApt;
