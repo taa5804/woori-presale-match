@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b2238">
-<title>우리 아파트 분양 매칭기 | 실시간 1:1 맞춤 분양</title>
+<title>우리 아파트 분양 매칭기 | 실시간 맞춤 분양</title>
 <style>
 * { box-sizing: border-box; }
 html, body {
@@ -17,7 +17,7 @@ html, body {
   color: #0f172a;
 }
 .matcher-container {
-  width: min(100%, 680px);
+  width: min(100%, 720px);
   margin: 0 auto;
   padding: 16px 14px 60px;
 }
@@ -56,10 +56,10 @@ html, body {
   line-height: 1.5;
 }
 
-/* 3단계 지역 선택 셀렉터 박스 (시/도 -> 구/군 -> 동) */
+/* 3단계 지역 선택 박스 */
 .selector-card {
   margin: 16px 0;
-  padding: 18px 16px;
+  padding: 16px 14px;
   background: #fff;
   border-radius: 16px;
   border: 1px solid #cbd5e1;
@@ -69,10 +69,10 @@ html, body {
   font-size: 13px;
   font-weight: 800;
   color: #0f2d44;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
 }
 .select-row {
   display: grid;
@@ -81,7 +81,7 @@ html, body {
 }
 .select-box {
   width: 100%;
-  padding: 11px 10px;
+  padding: 11px 8px;
   border: 1.5px solid #cbd5e1;
   border-radius: 10px;
   background: #f8fafc;
@@ -97,54 +97,51 @@ html, body {
   background: #fff;
 }
 
-/* 매칭 결과 카드 (오직 선택된 1개 단지만 큼직하게 노출!) */
-.match-result-section {
-  margin-top: 18px;
-}
+/* 매칭 결과 리스트 바 */
 .result-badge-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
-  padding: 0 4px;
+  margin: 20px 4px 10px;
 }
 .result-badge {
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 800;
   color: #0284c7;
   background: #e0f2fe;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
 }
 .result-count {
-  font-size: 12px;
-  color: #64748b;
-  font-weight: 700;
+  font-size: 12.5px;
+  color: #475569;
+  font-weight: 800;
 }
 
+/* 전체 단지 카드 리스트 */
+.matched-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .matched-card {
   background: #fff;
-  border-radius: 20px;
-  border: 2px solid #0f2d44;
+  border-radius: 18px;
+  border: 1px solid #cbd5e1;
   overflow: hidden;
-  box-shadow: 0 12px 35px rgba(15,45,68,0.12);
-  animation: fadeIn 0.3s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
 }
 
 .card-hero {
   position: relative;
-  height: 250px;
+  height: 230px;
   background: #0b2238 center/cover no-repeat;
   color: #fff;
 }
 .hero-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(7,24,42,0.15) 0%, rgba(7,24,42,0.88) 100%);
+  background: linear-gradient(180deg, rgba(7,24,42,0.15) 0%, rgba(7,24,42,0.85) 100%);
 }
 .card-top-badges {
   position: absolute;
@@ -190,29 +187,29 @@ html, body {
   margin-bottom: 4px;
 }
 .card-hero-body h2 {
-  margin: 0 0 6px;
-  font-size: 23px;
+  margin: 0 0 4px;
+  font-size: 21px;
   font-weight: 800;
   letter-spacing: -0.5px;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 .card-hero-body p {
   margin: 0;
-  font-size: 13px;
+  font-size: 12.5px;
   color: #e2e8f0;
 }
 
 .card-details {
-  padding: 18px 16px;
+  padding: 16px;
 }
 .info-table {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .info-cell {
-  padding: 11px 12px;
+  padding: 10px 12px;
   background: #f8fafc;
   border: 1px solid #edf2f7;
   border-radius: 10px;
@@ -228,12 +225,12 @@ html, body {
   color: #0f172a;
 }
 .location-row {
-  padding: 11px 13px;
+  padding: 10px 12px;
   background: #f1f5f9;
   border-radius: 10px;
   font-size: 12.5px;
   color: #334155;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -243,30 +240,29 @@ html, body {
   flex-shrink: 0;
 }
 
-/* 1개 단지 8P 카탈로그 직통 열기 버튼 */
+/* 해당 단지의 8P 카탈로그 직통 열기 버튼 */
 .btn-open-catalog {
   display: block;
   width: 100%;
-  padding: 16px 0;
+  padding: 15px 0;
   border: 0;
-  border-radius: 14px;
+  border-radius: 12px;
   background: linear-gradient(135deg, #0b2238 0%, #164363 100%);
   color: #f3d999;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(11,34,56,0.25);
+  box-shadow: 0 4px 14px rgba(11,34,56,0.2);
   transition: transform 0.15s;
 }
 .btn-open-catalog:active {
   transform: scale(0.98);
 }
 
-/* 매칭 단지가 없을 때 */
 .no-match-box {
-  padding: 36px 18px;
+  padding: 40px 18px;
   background: #fff;
   border-radius: 16px;
   border: 1px dashed #cbd5e1;
@@ -283,38 +279,38 @@ html, body {
 <div class="matcher-container">
 
   <header class="matcher-header">
-    <span class="eyebrow">PREMIUM 1:1 MATCHING</span>
+    <span class="eyebrow">PREMIUM MATCHING</span>
     <h1>아파트분양 맞춤 매칭기</h1>
-    <p>희망하시는 시·도 및 시·군·구를 선택하시면<br>해당 지역 공식 분양 카탈로그가 1:1로 즉시 매칭됩니다.</p>
+    <p>원하시는 시·도 및 시·군·구를 선택하시면<br>해당 지역의 전체 분양 아파트 목록이 실시간으로 매칭됩니다.</p>
   </header>
 
   <!-- 3단계 지역 선택 박스 -->
   <section class="selector-card">
     <div class="selector-title">
-      <span>📍</span>
-      <span>매칭 희망 지역 선택</span>
+      <span>📍 매칭 희망 지역 선택</span>
+      <span id="resetBtn" style="color:#0284c7; cursor:pointer; font-size:12px;">전체 초기화 ↺</span>
     </div>
     <div class="select-row">
       <select id="sidoSelect" class="select-box">
-        <option value="">시·도 선택</option>
+        <option value="">시·도 전체</option>
       </select>
       <select id="gugunSelect" class="select-box" disabled>
-        <option value="">시·군·구 선택</option>
+        <option value="">시·군·구 전체</option>
       </select>
       <select id="dongSelect" class="select-box" disabled>
-        <option value="">읍·면·동 선택</option>
+        <option value="">읍·면·동 전체</option>
       </select>
     </div>
   </section>
 
-  <!-- 매칭 결과 (오직 1개 단지만 큼직하게 노출) -->
-  <section class="match-result-section" id="resultSection">
-    <div class="result-badge-bar">
-      <span class="result-badge" id="matchBadge">🎯 1:1 실시간 매칭 단지</span>
-      <span class="result-count" id="matchStatusText">지역을 선택해 주세요</span>
-    </div>
-    <div id="matchedCardContainer"></div>
-  </section>
+  <!-- 매칭 결과 헤더 -->
+  <div class="result-badge-bar">
+    <span class="result-badge" id="matchBadge">🏢 매칭 분양 단지 리스트</span>
+    <span class="result-count" id="matchStatusText">총 148개 단지</span>
+  </div>
+
+  <!-- 전체 단지가 전부 노출되는 리스트 컨테이너 -->
+  <section class="matched-list" id="matchedCardContainer"></section>
 
 </div>
 
@@ -326,15 +322,15 @@ html, body {
   var dongSelect = document.getElementById("dongSelect");
   var cardContainer = document.getElementById("matchedCardContainer");
   var matchStatusText = document.getElementById("matchStatusText");
+  var resetBtn = document.getElementById("resetBtn");
 
-  // DB 로드
   fetch("presale_db.json")
     .then(function(r) { return r.json(); })
     .then(function(data) {
       presaleList = Array.isArray(data) ? data : [];
       initSidoOptions();
-      // 초기 기본값: 경기도 광명시 자동 세팅
-      autoSelectDefault("경기도", "광명시");
+      // 처음에는 '전체 148개'를 시원하게 전부 보여줌!
+      renderList(presaleList);
     })
     .catch(function(e) {
       console.log("DB Load Error", e);
@@ -347,23 +343,21 @@ html, body {
         sidos.push(item.sido);
       }
     });
-    // 정렬
     sidos.sort();
-    sidoSelect.innerHTML = '<option value="">시·도 선택</option>' + sidos.map(function(s) {
+    sidoSelect.innerHTML = '<option value="">시·도 전체</option>' + sidos.map(function(s) {
       return '<option value="' + s + '">' + s + '</option>';
     }).join("");
   }
 
-  // 시/도 변경 시
   sidoSelect.addEventListener("change", function() {
     var selectedSido = sidoSelect.value;
-    gugunSelect.innerHTML = '<option value="">시·군·구 선택</option>';
-    dongSelect.innerHTML = '<option value="">읍·면·동 선택</option>';
+    gugunSelect.innerHTML = '<option value="">시·군·구 전체</option>';
+    dongSelect.innerHTML = '<option value="">읍·면·동 전체</option>';
     dongSelect.disabled = true;
 
     if (!selectedSido) {
       gugunSelect.disabled = true;
-      renderMatchedCard(null);
+      renderList(presaleList);
       return;
     }
 
@@ -380,19 +374,17 @@ html, body {
     }).join("");
     gugunSelect.disabled = false;
 
-    // 해당 시도 내 첫 번째 단지 즉시 매칭 노출
-    findAndRenderMatch(selectedSido, "", "");
+    filterAndRender();
   });
 
-  // 구/군 변경 시
   gugunSelect.addEventListener("change", function() {
     var selectedSido = sidoSelect.value;
     var selectedGugun = gugunSelect.value;
-    dongSelect.innerHTML = '<option value="">읍·면·동 선택</option>';
+    dongSelect.innerHTML = '<option value="">읍·면·동 전체</option>';
 
     if (!selectedGugun) {
       dongSelect.disabled = true;
-      findAndRenderMatch(selectedSido, "", "");
+      filterAndRender();
       return;
     }
 
@@ -413,106 +405,98 @@ html, body {
       dongSelect.disabled = true;
     }
 
-    findAndRenderMatch(selectedSido, selectedGugun, "");
+    filterAndRender();
   });
 
-  // 동 변경 시
   dongSelect.addEventListener("change", function() {
-    findAndRenderMatch(sidoSelect.value, gugunSelect.value, dongSelect.value);
+    filterAndRender();
   });
 
-  // 조건에 맞는 단지 '딱 1개' 찾아 렌더링
-  function findAndRenderMatch(sido, gugun, dong) {
-    if (!sido) {
-      renderMatchedCard(null);
-      return;
-    }
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function() {
+      sidoSelect.value = "";
+      gugunSelect.innerHTML = '<option value="">시·군·구 전체</option>';
+      gugunSelect.disabled = true;
+      dongSelect.innerHTML = '<option value="">읍·면·동 전체</option>';
+      dongSelect.disabled = true;
+      renderList(presaleList);
+    });
+  }
 
-    var matched = presaleList.filter(function(item) {
-      var matchSido = item.sido === sido;
+  function filterAndRender() {
+    var sido = sidoSelect.value;
+    var gugun = gugunSelect.value;
+    var dong = dongSelect.value;
+
+    var filtered = presaleList.filter(function(item) {
+      var matchSido = !sido || item.sido === sido;
       var matchGugun = !gugun || item.gugun === gugun;
       var matchDong = !dong || item.dong === dong;
       return matchSido && matchGugun && matchDong;
     });
 
-    if (matched.length > 0) {
-      // 가장 첫 번째 알짜 단지 1개만 매칭!
-      renderMatchedCard(matched[0], matched.length);
-    } else {
-      renderMatchedCard(null, 0);
-    }
+    renderList(filtered);
   }
 
-  function renderMatchedCard(item, totalCount) {
-    if (!item) {
-      matchStatusText.textContent = "일치하는 분양 단지가 없습니다.";
+  function renderList(list) {
+    if (!list || list.length === 0) {
+      matchStatusText.textContent = "검색 결과 0건";
       cardContainer.innerHTML = `
         <div class="no-match-box">
-          현재 선택하신 지역에 등록된 분양 단지가 없습니다.<br>다른 시·군·구를 선택해 주세요.
+          현재 선택하신 지역에 등록된 분양 단지가 없습니다.<br>다른 지역을 선택해 주세요.
         </div>
       `;
       return;
     }
 
-    matchStatusText.textContent = (item.sido || '') + ' ' + (item.gugun || '') + ' 추천 1순위 단지';
+    var regionName = sidoSelect.value ? (sidoSelect.value + (gugunSelect.value ? " " + gugunSelect.value : "")) : "전국";
+    matchStatusText.textContent = regionName + " " + list.length + "개 단지 매칭";
 
-    // 오직 이 단지 1개만의 8P 상세 카탈로그 직통 링크
-    var directCatalogUrl = "sale-detail.html?apt=" + encodeURIComponent(item.apt_name || '') + 
-                           "&sido=" + encodeURIComponent(item.sido || '') + 
-                           "&phone=" + encodeURIComponent(item.director_phone || '');
+    cardContainer.innerHTML = list.map(function(item) {
+      // 8P 카탈로그 직통 열기 주소
+      var directCatalogUrl = "sale-detail.html?apt=" + encodeURIComponent(item.apt_name || '') + 
+                             "&sido=" + encodeURIComponent(item.sido || '') + 
+                             "&phone=" + encodeURIComponent(item.director_phone || '');
 
-    cardContainer.innerHTML = `
-      <article class="matched-card">
-        <div class="card-hero" style="background-image:url('sample-cover.jpg');">
-          <div class="hero-shade"></div>
-          <div class="card-top-badges">
-            <span class="badge-status">${item.status || '분양중'}</span>
-            <span class="badge-builder">${item.builder || '공식 시공사'}</span>
-          </div>
-          <div class="card-hero-body">
-            <small>${item.sido || ''} ${item.gugun || ''} ${item.dong || ''}</small>
-            <h2>${item.apt_name || '프리미엄 분양 단지'}</h2>
-            <p>고객 맞춤형 랜드마크 분양 현장</p>
-          </div>
-        </div>
-
-        <div class="card-details">
-          <div class="info-table">
-            <div class="info-cell">
-              <span>총 세대수</span>
-              <strong>${item.units || '대단지'}</strong>
+      return `
+        <article class="matched-card">
+          <div class="card-hero" style="background-image:url('sample-cover.jpg');">
+            <div class="hero-shade"></div>
+            <div class="card-top-badges">
+              <span class="badge-status">${item.status || '분양중'}</span>
+              <span class="badge-builder">${item.builder || '공식 시공사'}</span>
             </div>
-            <div class="info-cell">
-              <span>시공사</span>
-              <strong>${item.builder || '책임시공'}</strong>
+            <div class="card-hero-body">
+              <small>${item.sido || ''} ${item.gugun || ''} ${item.dong || ''}</small>
+              <h2>${item.apt_name || '프리미엄 분양 단지'}</h2>
+              <p>최고의 입지와 브랜드 프리미엄을 갖춘 랜드마크</p>
             </div>
           </div>
 
-          <div class="location-row">
-            <b>현장 위치</b>
-            <span>${item.address || (item.sido + ' ' + item.gugun)}</span>
+          <div class="card-details">
+            <div class="info-table">
+              <div class="info-cell">
+                <span>총 세대수</span>
+                <strong>${item.units || '대단지'}</strong>
+              </div>
+              <div class="info-cell">
+                <span>시공사</span>
+                <strong>${item.builder || '책임시공'}</strong>
+              </div>
+            </div>
+
+            <div class="location-row">
+              <b>현장 위치</b>
+              <span>${item.address || (item.sido + ' ' + item.gugun)}</span>
+            </div>
+
+            <a href="${directCatalogUrl}" class="btn-open-catalog">
+              📖 [${item.apt_name}] 8P 공식 카탈로그 열기
+            </a>
           </div>
-
-          <!-- 누르면 이 단지 1개의 8P 카탈로그가 100% 열림 -->
-          <a href="${directCatalogUrl}" class="btn-open-catalog">
-            📖 [${item.apt_name}] 8P 공식 카탈로그 열기
-          </a>
-        </div>
-      </article>
-    `;
-  }
-
-  function autoSelectDefault(targetSido, targetGugun) {
-    if (sidoSelect.querySelector('option[value="' + targetSido + '"]')) {
-      sidoSelect.value = targetSido;
-      sidoSelect.dispatchEvent(new Event("change"));
-      setTimeout(function() {
-        if (gugunSelect.querySelector('option[value="' + targetGugun + '"]')) {
-          gugunSelect.value = targetGugun;
-          gugunSelect.dispatchEvent(new Event("change"));
-        }
-      }, 50);
-    }
+        </article>
+      `;
+    }).join("");
   }
 
 })();
